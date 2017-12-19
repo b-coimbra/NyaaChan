@@ -1,0 +1,112 @@
+body
+{
+	background-color: Azure;
+	margin: 10px;
+}
+
+#Title
+{
+	display: block;
+	text-align: center;
+	font-size: 100px;
+	color: LightCoral;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	text-decoration: none;
+}
+
+#Split
+{
+	width: 1200px;
+	height: 1px;
+	background-color: SlateGray;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+#Menu
+{
+	display: block;
+	width: 1200px;
+	height: 40px;
+	margin: 0px;
+}
+
+#MenuButton
+{
+	display: inline-block;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+#MenuButtonText
+{
+	text-decoration: none;
+	color: LightCoral;
+	padding: 10px 40px;
+}
+
+#GroupTitle
+{
+	display: block;
+	text-align: center;
+	font-size: 20px;
+	color: LightCoral;
+	text-decoration: none;
+}
+
+#Thread
+{
+	display: block;
+}
+
+#ThreadIMG
+{
+	display: inline-block;
+	width: 200px;
+	height: 200px;
+}
+
+#ThreadText
+{
+	position: absolute;
+	display: inline-block;
+	padding-left: 20px;
+}
+
+#WebsiteFooter
+{
+	font-size: 15px;
+	color: LightCoral;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+#BoardList
+{
+
+}
+
+#BoardItem
+{
+	display: inline-block;
+	text-decoration: none;
+}
+
+#BoardItemThumb
+{
+	display: block;
+}
+
+#BoardItemText
+{
+	display: block;
+	background-color: Lavender;
+	color: LightCoral;
+	width: 150px;
+}
+
+#AccountSide
+{
+	text-align: right;
+}
