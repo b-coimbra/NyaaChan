@@ -1,0 +1,7 @@
+RewriteEngine on
+RewriteRule ^Home/?$ Index.php
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^(.*)$ $1.php
+
+ErrorDocument 404 /404.html
