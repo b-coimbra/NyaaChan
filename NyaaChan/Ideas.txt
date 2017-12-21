@@ -1,0 +1,25 @@
+Voting System "Voting Without Impact" "Vote Good Or Bad" "Thread"
+Show Posters IP "Country Flag"
+Minimum length for a posts/threads
+Originality check for posts/threads
+Invite Only Threads
+System that would protect website from Banned IPs
+System that would identify spammers
+Word Filters
+don't include captcha
+base it off of blockchain technology
+
+Post
+Reply
+Deletion of posts/threads
+image upload
+
+
+
+
+I don't think you want just an upvote system. I think you want something more complex which integrates both votes and sharing across your platform with friends. Of course that is no longer an image board in the classical sense but it's better, more powerful, more interactive with users.
+
+
+add a paint image, where everyone in the community can add to it. 
+Like those community doodle sites. 
+theres that one video of a guy going to a bunch of those boards are drawing the "rattle me bones" thing. 
