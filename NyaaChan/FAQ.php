@@ -12,9 +12,7 @@
 			<div style="color: LightCoral;">Nothing Yet!</div>
 			<br>
 
-			<div id="Split"></div>
-
-			<div id="WebsiteFooter">Total Posts: 0 Total Space 0MB Total Visits 0 Online: 0</div>
+			<?php include 'Footer.php'; ?>
 		</center>
 	</body>
 </html>

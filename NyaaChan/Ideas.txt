@@ -9,6 +9,10 @@ Word Filters
 don't include captcha
 base it off of blockchain technology
 
+
+Real time post updating
+
+
 Post
 Reply
 Deletion of posts/threads
@@ -23,3 +27,5 @@ I don't think you want just an upvote system. I think you want something more co
 add a paint image, where everyone in the community can add to it. 
 Like those community doodle sites. 
 theres that one video of a guy going to a bunch of those boards are drawing the "rattle me bones" thing. 
+
+Also, OP, it be cool to have some kind of marker thats not an ID or Name. You know how foruks let you have a banner after your post? Something like that. Maybe if you can have a temporary avatar for a thread. Like a gif or a sprite.
