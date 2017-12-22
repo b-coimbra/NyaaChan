@@ -7,23 +7,23 @@
 	</head>
 	<body>
 		<a href="../../Home" id="Title">NyaaChan</a>
-		<div id="GroupTitle">/Anime/</div>
+		<a href="../Anime/" id="GroupTitle">/Anime/</a>
 
 		<br>
 
 		<center>
-			<form action="CreateThread.php" method="post" enctype="multipart/form-data">
+			<form action="Create-Thread.php" method="post" enctype="multipart/form-data">
 				<table>
 					<tr>
 						<td><label><b>File</b></label></td>
-						<td><input type="file" name="fileToUpload" id="fileToUpload" accept="image/x-png,image/gif,image/jpeg" required></td>
+						<td><input type="file" name="ThreadFile" accept="image/x-png,image/gif,image/jpeg" required></td>
 					</tr>
 					<tr>
 						<td><label><b>Comment</b></label></td>
-						<td><textarea cols="30" rows="5" name="Comment" required></textarea></td>
+						<td><textarea cols="30" rows="5" name="ThreadComment" required></textarea></td>
 					</tr>
 					<tr align="center">
-						<td colspan="2"><input type="submit" name="submit"value="Create Thread"></td>
+						<td colspan="2"><input type="submit" name="submit" value="Create Thread"></td>
 					</tr>
 				</table>
 			</form>
@@ -34,18 +34,21 @@
 		<?php
 		include 'SQL_Connection.php';
 
-		$query = "SELECT * FROM threads";
-		$result = $Connection->query($query);
+		$ThreadQuery = "SELECT * FROM threads";
+		$ThreadResault = $Connection->query($ThreadQuery);
 
-		while($row = $result->fetch_array())
+		while($Row = $ThreadResault->fetch_array())
 		{
-			echo "<div id='Thread'>
-				<img src='$row[ThreadFile]' id='ThreadIMG'>
+			echo "
+			<div id='Thread'>
+				<img src='$Row[ThreadFile]' id='ThreadIMG'>
 				<div id='ThreadText'>
-					<p>[Anonymous]  $row[ThreadID] <a href='Thread.php?ThreadID=$row[ThreadID]'>[Open Thread]</a></p>
-					<p>$row[ThreadComment]</p>
+					<div id='ThreadTextContent'>[Anonymous] [$Row[CreationDate]] [$Row[CreationTime]] <a href='Thread.php?ThreadID=$Row[ThreadID]'>[Open Thread]</a></div>
+					<br
+					<div id='ThreadTextContent'>$Row[ThreadComment]</div>
 				</div>
-			</div>";
+			</div>
+			<br>";
 		}
 		?>
 

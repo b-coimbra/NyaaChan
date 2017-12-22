@@ -1,12 +1,15 @@
 <?php
 	include 'SQL_Connection.php';
 
-	$ThreadID = uniqid();
-	$ThreadComment = $_REQUEST['Comment'];
+	$PostID = uniqid();
+	$PostComment = $_REQUEST['Comment'];
+	$URLThreadID = $_GET["ThreadID"];
+	$ThreadCreationDate = date("Y/m/d");
+	$ThreadCreationTime = date("h:i:a");
 
 	$UploadStats = "";
 	$target_dir = "ThreadFiles/";
-	$target_file = $target_dir . uniqid() . "." . pathinfo($_FILES["fileToUpload"]["name"], PATHINFO_EXTENSION);
+	$target_file = $target_dir . uniqid() . "." . pathinfo($_FILES["PostFile"]["name"], PATHINFO_EXTENSION);
 	//echo $target_file;
 	$uploadOk = 1;
 	$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
@@ -14,7 +17,7 @@
 	// Check if image file is a actual image or fake image
 	if(isset($_POST["submit"])) 
 	{
-    	$check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+    	$check = getimagesize($_FILES["PostFile"]["tmp_name"]);
 
     	if($check !== false) 
     	{
@@ -34,7 +37,7 @@
     	$uploadOk = 0;
 	}
 	// Check file size
-	if ($_FILES["fileToUpload"]["size"] > 5000000) 
+	if ($_FILES["PostFile"]["size"] > 5000000) 
 	{
     	$UploadStats = "Sorry, your file is too large.";
     	$uploadOk = 0;
@@ -54,9 +57,12 @@
 	} 
 	else 
 	{
-		if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) 
+		if (move_uploaded_file($_FILES["PostFile"]["tmp_name"], $target_file)) 
     	{
-        	$sql = "INSERT INTO threads (ThreadID, ThreadFile, ThreadComment, BoardLocation) VALUES ('$ThreadID','$target_file','$ThreadComment','Anime')";
+        	$sql = "
+        		INSERT INTO posts (PostID, PostFile, PostComment, ThreadID, CreationDate, CreationTime)
+        		VALUES ('$PostID','$target_file','$PostComment', '$URLThreadID', '$ThreadCreationDate', '$ThreadCreationTime')
+        	";
 
 			if ($Connection->query($sql) === TRUE) 
 			{
@@ -66,9 +72,9 @@
 			{
     			echo "Error: " . $sql . "<br>" . $Connection->error;
 			}
-        	$UploadStats = "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+        	$UploadStats = "The file ". basename( $_FILES["PostFile"]["name"]). " has been uploaded.";
 			$Connection->close();
-        	header("Location: /NyaaChan/Boards/Anime/Thread.php?ThreadID=$ThreadID"); 
+        	header("Location: /NyaaChan/Boards/Anime/Thread.php?ThreadID=$URLThreadID"); 
     	} 
     	else 
     	{

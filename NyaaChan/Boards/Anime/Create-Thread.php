@@ -1,13 +1,14 @@
 <?php
 	include 'SQL_Connection.php';
 
-	$PostID = uniqid();
-	$PostComment = $_REQUEST['Comment'];
-	$URLThreadID = $_GET["ThreadID"];
+	$ThreadID = uniqid();
+	$ThreadComment = $_REQUEST['ThreadComment'];
+	$ThreadCreationDate = date("Y/m/d");
+	$ThreadCreationTime = date("h:i:a");
 
 	$UploadStats = "";
 	$target_dir = "ThreadFiles/";
-	$target_file = $target_dir . uniqid() . "." . pathinfo($_FILES["fileToUpload"]["name"], PATHINFO_EXTENSION);
+	$target_file = $target_dir . uniqid() . "." . pathinfo($_FILES["ThreadFile"]["name"], PATHINFO_EXTENSION);
 	//echo $target_file;
 	$uploadOk = 1;
 	$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
@@ -15,7 +16,7 @@
 	// Check if image file is a actual image or fake image
 	if(isset($_POST["submit"])) 
 	{
-    	$check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+    	$check = getimagesize($_FILES["ThreadFile"]["tmp_name"]);
 
     	if($check !== false) 
     	{
@@ -35,7 +36,7 @@
     	$uploadOk = 0;
 	}
 	// Check file size
-	if ($_FILES["fileToUpload"]["size"] > 5000000) 
+	if ($_FILES["ThreadFile"]["size"] > 5000000) 
 	{
     	$UploadStats = "Sorry, your file is too large.";
     	$uploadOk = 0;
@@ -55,9 +56,9 @@
 	} 
 	else 
 	{
-		if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) 
+		if (move_uploaded_file($_FILES["ThreadFile"]["tmp_name"], $target_file)) 
     	{
-        	$sql = "INSERT INTO posts (PostID, PostFile, PostComment, ThreadID) VALUES ('$PostID','$target_file','$PostComment', '$URLThreadID')";
+        	$sql = "INSERT INTO threads (ThreadID, ThreadFile, ThreadComment, BoardLocation, CreationDate, CreationTime) VALUES ('$ThreadID','$target_file','$ThreadComment','Anime', '$ThreadCreationDate', '$ThreadCreationTime')";
 
 			if ($Connection->query($sql) === TRUE) 
 			{
@@ -69,7 +70,7 @@
 			}
         	$UploadStats = "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
 			$Connection->close();
-        	header("Location: /NyaaChan/Boards/Anime/Thread.php?ThreadID=$URLThreadID"); 
+        	header("Location: /NyaaChan/Boards/Anime/Thread.php?ThreadID=$ThreadID"); 
     	} 
     	else 
     	{
