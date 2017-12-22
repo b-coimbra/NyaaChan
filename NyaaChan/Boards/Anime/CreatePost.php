@@ -1,8 +1,9 @@
 <?php
 	include 'SQL_Connection.php';
 
-	$ThreadID = uniqid();
-	$ThreadComment = $_REQUEST['Comment'];
+	$PostID = uniqid();
+	$PostComment = $_REQUEST['Comment'];
+	$URLThreadID = $_GET["ThreadID"];
 
 	$UploadStats = "";
 	$target_dir = "ThreadFiles/";
@@ -56,7 +57,7 @@
 	{
 		if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) 
     	{
-        	$sql = "INSERT INTO threads (ThreadID, ThreadFile, ThreadComment, BoardLocation) VALUES ('$ThreadID','$target_file','$ThreadComment','Anime')";
+        	$sql = "INSERT INTO posts (PostID, PostFile, PostComment, ThreadID) VALUES ('$PostID','$target_file','$PostComment', '$URLThreadID')";
 
 			if ($Connection->query($sql) === TRUE) 
 			{
@@ -68,7 +69,7 @@
 			}
         	$UploadStats = "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
 			$Connection->close();
-        	header("Location: /NyaaChan/Boards/Anime/Thread.php?ThreadID=$ThreadID"); 
+        	header("Location: /NyaaChan/Boards/Anime/Thread.php?ThreadID=$URLThreadID"); 
     	} 
     	else 
     	{

@@ -1,3 +1,7 @@
+<?php 
+	$URLThreadID = $_GET["ThreadID"];
+?>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -12,7 +16,7 @@
 		<br>
 
 		<center>
-			<form action="CreateThread.php" method="post" enctype="multipart/form-data">
+			<form action="CreatePost.php?ThreadID=<?php echo $URLThreadID; ?>" method="post" enctype="multipart/form-data">
 				<table>
 					<tr>
 						<td><label><b>File</b></label></td>
@@ -23,7 +27,7 @@
 						<td><textarea cols="30" rows="5" name="Comment" required></textarea></td>
 					</tr>
 					<tr align="center">
-						<td colspan="2"><input type="submit" name="submit"value="Create Thread"></td>
+						<td colspan="2"><input type="submit" name="submit" value="Reply"></td>
 					</tr>
 				</table>
 			</form>
@@ -34,17 +38,28 @@
 		<?php
 		include 'SQL_Connection.php';
 
-		$query = "SELECT * FROM threads";
+		$query = "SELECT * FROM threads WHERE ThreadID='$URLThreadID'";
 		$result = $Connection->query($query);
 
 		while($row = $result->fetch_array())
 		{
-			echo "<div id='Thread'>
+				echo "<div id='Thread'>
 				<img src='$row[ThreadFile]' id='ThreadIMG'>
 				<div id='ThreadText'>
-					<p>[Anonymous]  $row[ThreadID] <a href='Thread.php?ThreadID=$row[ThreadID]'>[Open Thread]</a></p>
+					<p>[Anonymous] $row[ThreadID]</p>
 					<p>$row[ThreadComment]</p>
 				</div>
+			</div>";
+		}
+		$PostQuery = "SELECT * FROM posts WHERE ThreadID='$URLThreadID'";
+		$PostQueryResult = $Connection->query($PostQuery);
+
+		while ($row = $PostQueryResult->fetch_array()) 
+		{
+			echo "<div id='Comment'>
+				<img src='$row[PostFile]' id='PostIMG'>
+				<p>[Anonymous]   $row[PostID]</p>
+				<p>$row[PostComment]</p>
 			</div>";
 		}
 		?>
@@ -57,5 +72,16 @@
 #Split
 {
 	width: 100%;
+}
+p
+{
+	display: block;
+	position: relative;
+}
+#PostIMG
+{
+	display: inline-block;
+	width: 100px;
+	height: 100px;
 }
 </style>
