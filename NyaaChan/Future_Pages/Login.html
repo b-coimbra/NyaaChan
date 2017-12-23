@@ -1,29 +1,226 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<title>NyaaChan - Login</title>
-		<link rel="icon" href="Favicon.png">
-		<link rel="stylesheet" type="text/css" href="NyaaChan.css">
-	</head>
-	<body>
-		<center>
-			<div style="margin-top: 10%; margin-bottom: 40px;"><a href="index.html" id="Title">NyaaChan</a></div>
-			<form action="">
-  				<div>
-    				<label style="color: SlateGray; font-size: 20px; padding: 5px;"><b>Username</b></label>
-    				<input type="text" placeholder="" name="Username" required style="height: 20px; width: 200px;">
-    				<br>
-    				<br>
-    				<label style="color: SlateGray; font-size: 20px; padding: 5px;"><b>Password</b></label>
-    				<input type="password" placeholder="" name="Password" required style="height: 20px; width: 200px;">
-  				</div>
-  				<br>
-  				<div>
-  					<button type="submit" style="border: none; background-color: Gainsboro; color: SlateGray; padding: 10px 40px; font-size: 20px;">Login</button>
-    				<span><a href="" style="color: SlateGray; font-size: 20px; padding: 5px; text-decoration: none;">Forgot Password?</a></span>
-    				<button type="button" style="border: none; background-color: Gainsboro; color: SlateGray; padding: 10px 40px; font-size: 20px;">Cancel</button>
-  				</div>
-			</form>
-		</center>
-	</body>
+<html slang="en">
+<head>
+	<title>NyaaChan - Login</title>
+	<link rel="icon" href="Favicon.png" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes" />
+    <link href="https://fonts.googleapis.com/icon?family=Roboto|Raleway|Material+Icons|Open+Sans" rel="stylesheet" />
+    <style>
+        @charset "UTF-8";
+
+        * {
+            margin: 0;
+            padding: 0;
+            outline: 0;
+            border: 0;
+            -webkit-user-drag: none;
+            -webkit-user-select: none;
+               -moz-user-select: none;
+                -ms-user-select: none;
+        }
+
+        .not-supported {
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background: #000;
+            display: none;
+        }
+        
+        _:-ms-lang(x), *:not(.not-supported) { display: none }
+        _:-ms-lang(x), .not-supported { display: block !important }
+
+        @supports not (--var: 0) {
+            .not-supported { display: block !important }
+            *:not(.not-supported) { display: none !important }
+        }
+
+        :root {
+            --accent: #ff8197;
+            --dark-accent: #2c2f44;
+            --bg-scheme: #ffcfe7;
+            --sub-pos: 0;
+        }
+
+        body {
+            background: linear-gradient(transparent, var(--bg-scheme)), url('pattern-bg.png') center repeat;
+            height: 100vh;
+        }
+
+        #container {
+            position: absolute;
+            margin: auto;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            width: 400px;
+            height: 400px;
+            background: #fff;
+            border-radius: 4px;
+            box-shadow: 0 5px 5px rgba(0, 0, 0, .1);
+            overflow: hidden;
+        }
+
+        #container .panels {
+            display: grid;
+            grid-template-columns: [login] 1fr [register] 1fr;
+            background: var(--dark-accent);
+            box-shadow: 0 2px 3px rgba(0, 0, 0, .1);
+        }
+
+        #container .panels a {
+            width: 100%;
+            align-self: center;
+            justify-self: center;
+            text-align: center;
+            padding: 1em 0;
+            font: 500 14px 'Roboto', sans-serif;
+            letter-spacing: 1px;
+            text-decoration: none;
+            text-transform: uppercase;
+            color: #d6d6d6;
+        }
+
+        #container .panels a:not([current]) { background: rgba(0, 0, 0, .2) }
+
+        #container .panels a:hover { background: rgba(255, 255, 255, .1) }
+
+        #container .panels a:nth-child(1) { grid-column: login }
+        #container .panels a:nth-child(2) { grid-column: register }
+
+        #container .panels a[current], a.current { box-shadow: inset 0 -4px #fff; transition: all .5s }
+
+        #login, #register {
+            position: absolute;
+            width: 100%;
+            transition: all 1s ease-in-out;
+            background: #fff;
+            margin: 5px 0 0 0;
+        }
+
+        #register {
+            right: 100%;
+            visibility: hidden;
+        }
+
+        #register:target {
+            right: 0;
+            visibility: visible;
+        }
+
+        .credentials {
+            padding: 0 3em;
+            margin: 3em 0 0 0;
+            flex-wrap: wrap;
+        }
+
+        .credentials input {
+            width: 100%;
+            margin: 2em 0 1em 0;
+            box-shadow: 0 2px 0 var(--dark-accent);
+            transition: all .3s ease-in-out;
+            font: 600 13px 'Open Sans', sans-serif;
+            color: var(--dark-accent);
+            background: #fff;
+        }
+
+        .credentials input:focus { --dark-accent: var(--accent) }
+
+        .credentials div label {
+            position: absolute;
+            font: 300 13px 'Open Sans', sans-serif;
+            color: #929292;
+            text-transform: lowercase;
+        }
+
+        .credentials button[type="submit"] {
+            padding: .5em 1em;
+            background: var(--dark-accent);
+            color: #fff;
+            text-transform: uppercase;
+            font: 500 10px 'Roboto', sans-serif;
+            letter-spacing: 1px;
+            border-radius: 2px;
+            cursor: pointer;
+            box-shadow: inset 0 var(--sub-pos) var(--accent);
+            transition: all .3s ease-in-out;
+        }
+
+        .credentials button[type="submit"]:hover { --sub-pos: -30px; }
+
+        .credentials h1 {
+            margin: 0 0 1em 0;
+            font: 300 24pt 'Raleway ExtraLight', sans-serif;
+            text-transform: lowercase;
+            box-shadow: inset 5px 0 var(--accent);
+            padding: 0 0 0 1em;
+            color: #ff9eaf;
+        }
+    </style>
+</head>
+<body>
+    <div class="not-supported"><p style="color: red; text-align: center; padding: 5em;">Your browser is not supported :(</p></div>
+    <div id="container">
+        <div class="panels">
+            <a href="#login" value="login" current>login</a>
+            <a href="#register" value="register">register</a>
+        </div>
+        <div id="login">
+            <form action="">
+                <div class="credentials">
+                    <h1>Login</h1>
+                    <div>
+                        <label>Username</label>
+                        <input type="text" name="username" tabindex="0" />
+                    </div>
+                    <div>
+                        <label>Password</label>
+                        <input type="password" name="password" tabindex="1" />
+                    </div>
+                    <button type="submit">
+                        <p>login</p>
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div id="register">
+            <form action="">
+                <div class="credentials">
+                    <h1>Register</h1>
+                    <div>
+                        <label>Email</label>
+                        <input type="text" name="email" tabindex="0" />
+                    </div>
+                    <div>
+                        <label>Username</label>
+                        <input type="text" name="username" tabindex="1" />
+                    </div>
+                    <div>
+                        <label>Password</label>
+                        <input type="password" name="password" tabindex="2" />
+                    </div>
+                    <button type="submit">
+                        <p>register</p>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        var elems = document.querySelectorAll('.panels a');
+
+        var makeActive = function() {
+            elems.forEach((i) => {
+                i.removeAttribute('current');
+                i.classList.remove('current');
+            });
+
+            this.classList.add('current');
+        };
+
+        elems.forEach((i) => i.addEventListener('mousedown', makeActive));
+    </script>
+</body>
 </html>
