@@ -1,6 +1,6 @@
 body
 {
-	background-color: Linen;
+	background-color: #FAF0E6;
 	margin: 10px;
 }
 
@@ -9,7 +9,7 @@ body
 	display: block;
 	text-align: center;
 	font-size: 100px;
-	color: LightCoral;
+	color: #F08080;
 	padding-top: 10px;
 	padding-bottom: 10px;
 	text-decoration: none;
@@ -19,7 +19,7 @@ body
 {
 	width: 1200px;
 	height: 1px;
-	background-color: SlateGray;
+	background-color: #778899;
 	margin-top: 20px;
 	margin-bottom: 20px;
 }
@@ -42,7 +42,7 @@ body
 #MenuButtonText
 {
 	text-decoration: none;
-	color: LightCoral;
+	color: #F08080;
 	padding: 10px 40px;
 }
 
@@ -51,14 +51,14 @@ body
 	display: block;
 	text-align: center;
 	font-size: 20px;
-	color: LightCoral;
+	color: #F08080;
 	text-decoration: none;
 }
 
 #Thread
 {
 	display: block;
-	background-color: Ivory;
+	background-color: #fffff0;
 }
 
 #ThreadIMG
@@ -83,7 +83,7 @@ body
 #WebsiteFooter
 {
 	font-size: 15px;
-	color: LightCoral;
+	color: #F08080;
 	margin-top: 20px;
 	margin-bottom: 20px;
 	text-align: center;
@@ -108,8 +108,8 @@ body
 #BoardItemText
 {
 	display: block;
-	background-color: Lavender;
-	color: LightCoral;
+	background-color: #e6e6fa;
+	color: #F08080;
 	width: 150px;
 }
 
@@ -126,7 +126,7 @@ body
 #Comment
 {
 	display: block;
-	background-color: Lavender;
+	background-color: #e6e6fa;
 	width: auto;
 	margin-top: 10px;
 	margin-bottom: 10px;
