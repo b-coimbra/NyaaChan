@@ -7,7 +7,7 @@
 		<center>
 			<?php include 'Header.php'; ?>
 
-			<div id="Title" style="font-size: 50px;">[FAQ]</div>
+			<div id="PageTitle">[FAQ]</div>
 			<br>
 			<div style="color: LightCoral;">Nothing Yet!</div>
 			<br>

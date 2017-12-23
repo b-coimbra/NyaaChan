@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 22, 2017 at 10:05 PM
+-- Generation Time: Dec 23, 2017 at 03:03 PM
 -- Server version: 5.7.17
 -- PHP Version: 7.1.3
 
@@ -25,17 +25,49 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `accounts`
+--
+
+CREATE TABLE `accounts` (
+  `Email` text COLLATE utf8_bin NOT NULL,
+  `Username` text COLLATE utf8_bin NOT NULL,
+  `Password` text COLLATE utf8_bin NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `boards`
+--
+
+CREATE TABLE `boards` (
+  `ID` text COLLATE utf8_bin NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Dumping data for table `boards`
+--
+
+INSERT INTO `boards` (`ID`) VALUES
+('Anime'),
+('Art'),
+('Technology'),
+('Video Games');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `posts`
 --
 
 CREATE TABLE `posts` (
-  `PostID` text NOT NULL,
-  `PostFile` text NOT NULL,
-  `PostComment` text NOT NULL,
-  `ThreadID` text NOT NULL,
-  `CreationDate` text NOT NULL,
-  `CreationTime` text NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `PostID` text COLLATE utf8_bin NOT NULL,
+  `PostFile` text COLLATE utf8_bin NOT NULL,
+  `PostComment` text COLLATE utf8_bin NOT NULL,
+  `ThreadID` text COLLATE utf8_bin NOT NULL,
+  `CreationDate` text COLLATE utf8_bin NOT NULL,
+  `CreationTime` text COLLATE utf8_bin NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
 
@@ -44,13 +76,13 @@ CREATE TABLE `posts` (
 --
 
 CREATE TABLE `threads` (
-  `ThreadID` text NOT NULL,
-  `ThreadFile` text NOT NULL,
-  `ThreadComment` text NOT NULL,
-  `BoardLocation` text NOT NULL,
-  `CreationDate` text NOT NULL,
-  `CreationTime` text NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `ThreadID` text COLLATE utf8_bin NOT NULL,
+  `ThreadFile` text COLLATE utf8_bin NOT NULL,
+  `ThreadComment` text COLLATE utf8_bin NOT NULL,
+  `BoardID` text COLLATE utf8_bin NOT NULL,
+  `CreationDate` text COLLATE utf8_bin NOT NULL,
+  `CreationTime` text COLLATE utf8_bin NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
 
@@ -59,8 +91,8 @@ CREATE TABLE `threads` (
 --
 
 CREATE TABLE `visitors` (
-  `IP` text CHARACTER SET latin1 NOT NULL,
-  `Status` text CHARACTER SET latin1 NOT NULL
+  `IP` text COLLATE utf8_bin NOT NULL,
+  `Status` text COLLATE utf8_bin NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --

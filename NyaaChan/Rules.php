@@ -7,7 +7,7 @@
 		<center>
 			<?php include 'Header.php'; ?>
 
-			<div id="Title" style="font-size: 50px;">[Rules]</div>
+			<div id="PageTitle">[Rules]</div>
 			<br>
 			<div style="color: LightCoral;">No Shit Posting!</div>
 			<br>

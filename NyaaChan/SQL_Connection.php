@@ -1,12 +1,10 @@
 <?php
-	$Host = "localhost";
-	$Username = "root";
-	$Password = "";
-	$DataBase = "nyaachan";
+	$dbHost = "localhost";
+	$dbUser = "root";
+	$dbPass = "";
+	$dbName = "nyaachan";
 
-	// Create connection
-	$Connection = mysqli_connect($Host, $Username, $Password);
-	
-	// Select DataBase
-	mysqli_select_db($Connection,$DataBase);
+	//Connect To MYSQL AND Database
+
+	$Connection = new mysqli($dbHost,$dbUser,$dbPass,$dbName);
 ?>

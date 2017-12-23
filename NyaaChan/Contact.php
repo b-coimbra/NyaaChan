@@ -7,8 +7,8 @@
 		<center>
 			<?php include 'Header.php'; ?>
 
-			<div id="Title" style="font-size: 50px;">[Contact Creator]</div>
-			<div id="Title" style="font-size: 20px;">[Not Yet Working]</div>
+			<div id="PageTitle">[Contact Creator]</div>
+			<div id="PageTitle" style="font-size: 20px;">[Not Yet Working]</div>
 			<br>
 			<form>
 				<table>

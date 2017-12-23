@@ -4,6 +4,7 @@
 	$PostID = uniqid();
 	$PostComment = $_REQUEST['PostComment'];
 	$URLThreadID = $_GET["ThreadID"];
+	$BoardID = $_GET["BoardID"];
 	$ThreadCreationDate = date("Y/m/d");
 	$ThreadCreationTime = date("h:i:a");
 
@@ -17,7 +18,9 @@
 	// Check if image file is a actual image or fake image
 	if(isset($_POST["submit"])) 
 	{
-    	$check = getimagesize($_FILES["PostFile"]["tmp_name"]);
+		if (is_null($target_file))
+		{
+			$check = getimagesize($_FILES["PostFile"]["tmp_name"]);
 
     	if($check !== false) 
     	{
@@ -29,8 +32,7 @@
         	$UploadStats = "File is not an image.";
         	$uploadOk = 0;
     	}
-	}
-	// Check if file already exists
+    		// Check if file already exists
 	if (file_exists($target_file)) 
 	{
     	$UploadStats = "Sorry, file already exists.";
@@ -74,25 +76,32 @@
 			}
         	$UploadStats = "The file ". basename( $_FILES["PostFile"]["name"]). " has been uploaded.";
 			$Connection->close();
-        	header("Location: Thread.php?ThreadID=$URLThreadID"); 
+        	header("Location: Thread.php?BoardID=$BoardID&ThreadID=$URLThreadID"); 
     	} 
     	else 
     	{
         	$UploadStats = "Sorry, there was an error uploading your file.";
     	}
 	}
-?>
+		}
+		else
+		{
+					$sql = "
+        		INSERT INTO posts (PostID, PostFile, PostComment, ThreadID, CreationDate, CreationTime)
+        		VALUES ('$PostID','','$PostComment', '$URLThreadID', '$ThreadCreationDate', '$ThreadCreationTime')
+        	";
 
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>Thread Creation!</title>
-		<link rel="stylesheet" type="text/css" href="../../NyaaChan.css">
-	</head>
-	<body>
-		<center>
-			<img src="../.././Images/Nyaa.png" style="margin-top: 10%;">
-			<div style="color: red;"><?php echo $UploadStats; ?></div>
-		</center>
-	</body>
-</html>
+			if ($Connection->query($sql) === TRUE) 
+			{
+    			echo "New record created successfully";
+			} 
+			else 
+			{
+    			echo "Error: " . $sql . "<br>" . $Connection->error;
+			}
+			$Connection->close();
+        	header("Location: Thread.php?BoardID=$BoardID&ThreadID=$URLThreadID");
+
+		}
+	}
+?>

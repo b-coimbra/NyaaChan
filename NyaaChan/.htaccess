@@ -1,5 +1,5 @@
 ErrorDocument 404 Error.php
-
+Options -Indexes
 RewriteEngine on
 RewriteRule ^Home/?$ Index.php
 RewriteCond %{REQUEST_FILENAME} !-d

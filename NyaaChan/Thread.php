@@ -1,5 +1,6 @@
 <?php 
 	$URLThreadID = $_GET["ThreadID"];
+	$BoardID = $_GET["BoardID"];
 ?>
 
 <!DOCTYPE html>
@@ -7,31 +8,30 @@
 	<head>
 		<title>NyaaChan - Anime</title>
 		<link rel="icon" href="Favicon.png">
-		<link rel="stylesheet" type="text/css" href="NyaaChan.css">
+		<link rel="stylesheet" type="text/css" href="CSS/NyaaChan.css">
 	</head>
 	<body>
-		<a href="Home" id="Title">NyaaChan</a>
-		<a href="/Anime" id="GroupTitle">/Anime/</a>
+		<div id="ThreadHeader">
+			<a href="Home" id="Title" style="margin: 0px;">NyaaChan</a>
+			<a href="ThreadList.php?BoardID=<?php echo $BoardID; ?>" id="GroupTitle">/<?php echo $BoardID; ?>/</a>
+			<br>
+		</div>
 
-		<br>
-
-		<center>
-			<form action="Create-Post.php?ThreadID=<?php echo $URLThreadID; ?>" method="post" enctype="multipart/form-data">
-				<table>
-					<tr>
-						<td><label><b>File</b></label></td>
-						<td><input type="file" name="PostFile" accept="image/x-png,image/gif,image/jpeg" required></td>
-					</tr>
-					<tr>
-						<td><label><b>Comment</b></label></td>
-						<td><textarea cols="30" rows="5" name="PostComment" required></textarea></td>
-					</tr>
-					<tr align="center">
-						<td colspan="2"><input type="submit" name="submit" value="Reply"></td>
-					</tr>
-				</table>
-			</form>
-		</center>
+		<form id="FormContainer" action="Create-Post.php?BoardID=<?php echo $BoardID; ?>&ThreadID=<?php echo $URLThreadID; ?>" method="post" enctype="multipart/form-data">
+			<table align="center">
+				<tr>
+					<td><label><b>File</b></label></td>
+					<td><input type="file" name="PostFile" accept="image/x-png,image/gif,image/jpeg"></td>
+				</tr>
+				<tr>
+					<td><label><b>Comment</b></label></td>
+					<td><textarea cols="30" rows="5" name="PostComment" required></textarea></td>
+				</tr>
+				<tr align="center">
+					<td colspan="2"><input type="submit" name="submit" value="Reply"></td>
+				</tr>
+			</table>
+		</form>
 
 		<div id="Split"></div>
 
@@ -60,14 +60,30 @@
 
 		while ($Row = $PostResult->fetch_array()) 
 		{
-			echo "
-			<div id='Comment'>
-				<img src='$Row[PostFile]' id='PostIMG'>
-				<div id='ThreadText'>
-					<div id='ThreadTextContent'>[Anonymous] [$Row[CreationDate]] [$Row[CreationTime]]</div>
-					<div id='ThreadTextContent'>$Row[PostComment]</div>
-				</div>
-			</div>";
+			if ($Row['PostFile'] == "")
+			{
+				echo "
+					<div id='Comment'>
+						<div id='PostText'>
+							<div id='ThreadTextContent'>[Anonymous] [$Row[CreationDate]] [$Row[CreationTime]]</div>
+							<br>
+							<div id='ThreadTextContent'>$Row[PostComment]</div>
+						</div>
+					</div>";
+
+			}
+			else
+			{
+				echo "
+					<div id='Comment'>
+						<img src='$Row[PostFile]' id='PostIMG'>
+						<div id='ThreadText'>
+							<div id='ThreadTextContent'>[Anonymous] [$Row[CreationDate]] [$Row[CreationTime]]</div>
+							<br>
+							<div id='ThreadTextContent'>$Row[PostComment]</div>
+						</div>
+					</div>";
+			}
 		}
 		?>
 
@@ -76,8 +92,8 @@
 </html>
 
 <style type="text/css">
-#Split
+#FooterContainer
 {
 	width: 100%;
-}
+}	
 </style>

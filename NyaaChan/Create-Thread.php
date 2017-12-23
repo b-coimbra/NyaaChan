@@ -71,7 +71,7 @@
 			}
         	$UploadStats = "The file ". basename( $_FILES["ThreadFile"]["name"]). " has been uploaded.";
 			$Connection->close();
-        	header("Location: Thread.php?ThreadID=$ThreadID"); 
+        	header("Location: Thread.php?BoardID=$BoardID&ThreadID=$ThreadID"); 
     	} 
     	else 
     	{
@@ -79,17 +79,3 @@
     	}
 	}
 ?>
-
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>Thread Creation!</title>
-		<link rel="stylesheet" type="text/css" href="../../NyaaChan.css">
-	</head>
-	<body>
-		<center>
-			<img src="../.././Images/Nyaa.png" style="margin-top: 10%;">
-			<div style="color: red;"><?php echo $UploadStats; ?></div>
-		</center>
-	</body>
-</html>

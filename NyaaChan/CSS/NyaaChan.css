@@ -1,0 +1,199 @@
+/* Linen = #FAF0E6 */
+/* LightCoral - #F08080 */
+/* SlateGray - #778899 */
+/* Ivory - #fffff0*/
+/* Lavender- #e6e6fa*/
+
+body
+{
+	background-color: Linen;
+	margin: 5px;
+}
+
+#Title
+{
+	display: block;
+	margin-top: 10%;
+	font-size: 6vmax;
+	color: LightCoral;
+	text-decoration: none;
+	font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+#PageTitle
+{
+	display: block;
+	font-size: 50px;
+	color: LightCoral;
+	text-decoration: none;
+	font-family: "Comic Sans MS", cursive, sans-serif;
+
+}
+
+#Split
+{
+	width: auto;
+	height: 1px;
+	background-color: SlateGrey;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	border: none;
+}
+
+#HeaderContainer
+{
+	display: block;
+	margin: auto;
+	width: 50%;
+	text-align: center;
+}
+
+#Menu
+{
+	display: block;
+	margin: auto;
+	padding: 0px;
+}
+
+#MenuButton
+{
+	display: inline-block;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+#MenuButtonText
+{
+	text-decoration: none;
+	font-size: 20px;
+	color: LightCoral;
+	padding: 10px 40px;
+	font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+#GroupTitle
+{
+	display: block;
+	font-size: 20px;
+	color: LightCoral;
+	text-decoration: none;
+}
+
+#ThreadHeader
+{
+	display: block;
+	width: 50%;
+	margin: auto;
+	text-align: center;
+}
+
+#Thread
+{
+	display: block;
+	background-color: Ivory;
+	height: 200px;
+}
+
+#ThreadIMG
+{
+	display: inline-block;
+	width: 200px;
+	height: 200px;
+}
+
+#ThreadText
+{
+	position: absolute;
+	display: inline-block;
+	padding: 20px;
+}
+
+#ThreadTextContent
+{
+
+}
+
+#FooterContainer
+{
+	display: block;
+	width: 50%;
+	margin: auto;
+	text-align: center;
+	margin-top: 20px;
+	border: 1px solid #778899;
+}
+
+#FooterContent
+{
+	display: block;
+	font-size: 15px;
+	color: LightCoral;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+#BoardList
+{
+	display: block;
+	width: 50%;
+	margin: auto;
+	text-align: center;
+}
+
+#BoardItem
+{
+	display: inline-block;
+	text-decoration: none;
+}
+
+#BoardThumb
+{
+	display: block;
+	max-height: 200px;
+	max-width: 150px;
+}
+
+#BoardText
+{
+	display: block;
+	background-color: Lavender;
+	color: LightCoral;
+	width: auto;
+}
+
+#AccountSide
+{
+	text-align: right;
+}
+
+#CommentList
+{
+	display: block;
+}
+
+#Comment
+{
+	display: block;
+	background-color: Lavender;
+	width: auto;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	padding-right: 20px;
+	padding-left: 20px;
+}
+
+#PostIMG
+{
+	display: inline-block;
+	width: 150px;
+	height: 150px;
+}
+
+#FormContainer
+{
+	display: block;
+	width: 50%;
+	margin: auto;
+}
+
