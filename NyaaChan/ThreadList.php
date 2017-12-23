@@ -1,18 +1,21 @@
+<?php 
+	$BoardID = $_GET["BoardID"];
+?>
 <!DOCTYPE html>
 <html>
 	<head>
 		<title>NyaaChan - Anime</title>
 		<link rel="icon" href="Favicon.png">
-		<link rel="stylesheet" type="text/css" href="../../NyaaChan.css">
+		<link rel="stylesheet" type="text/css" href="NyaaChan.css">
 	</head>
 	<body>
-		<a href="../../Home" id="Title">NyaaChan</a>
-		<a href="../Anime/" id="GroupTitle">/Anime/</a>
+		<a href="Home" id="Title">NyaaChan</a>
+		<a href="/Anime" id="GroupTitle">/Anime/</a>
 
 		<br>
 
 		<center>
-			<form action="Create-Thread.php" method="post" enctype="multipart/form-data">
+			<form action="Create-Thread.php?BoardID=<?php echo $BoardID; ?>" method="post" enctype="multipart/form-data">
 				<table>
 					<tr>
 						<td><label><b>File</b></label></td>
@@ -34,7 +37,7 @@
 		<?php
 		include 'SQL_Connection.php';
 
-		$ThreadQuery = "SELECT * FROM threads";
+		$ThreadQuery = "SELECT * FROM threads WHERE BoardID='$BoardID'";
 		$ThreadResault = $Connection->query($ThreadQuery);
 
 		while($Row = $ThreadResault->fetch_array())
@@ -52,7 +55,7 @@
 		}
 		?>
 
-		<?php include '../../Footer.php'; ?>
+		<?php include 'Footer.php'; ?>
 	</body>
 </html>
 

@@ -2,13 +2,13 @@
 	include 'SQL_Connection.php';
 
 	$PostID = uniqid();
-	$PostComment = $_REQUEST['Comment'];
+	$PostComment = $_REQUEST['PostComment'];
 	$URLThreadID = $_GET["ThreadID"];
 	$ThreadCreationDate = date("Y/m/d");
 	$ThreadCreationTime = date("h:i:a");
 
 	$UploadStats = "";
-	$target_dir = "ThreadFiles/";
+	$target_dir = "Data/";
 	$target_file = $target_dir . uniqid() . "." . pathinfo($_FILES["PostFile"]["name"], PATHINFO_EXTENSION);
 	//echo $target_file;
 	$uploadOk = 1;
@@ -74,7 +74,7 @@
 			}
         	$UploadStats = "The file ". basename( $_FILES["PostFile"]["name"]). " has been uploaded.";
 			$Connection->close();
-        	header("Location: /NyaaChan/Boards/Anime/Thread.php?ThreadID=$URLThreadID"); 
+        	header("Location: Thread.php?ThreadID=$URLThreadID"); 
     	} 
     	else 
     	{

@@ -1,13 +1,14 @@
 <?php
 	include 'SQL_Connection.php';
 
+	$BoardID = $_GET["BoardID"];
 	$ThreadID = uniqid();
 	$ThreadComment = $_REQUEST['ThreadComment'];
 	$ThreadCreationDate = date("Y/m/d");
 	$ThreadCreationTime = date("h:i:a");
 
 	$UploadStats = "";
-	$target_dir = "ThreadFiles/";
+	$target_dir = "Data/";
 	$target_file = $target_dir . uniqid() . "." . pathinfo($_FILES["ThreadFile"]["name"], PATHINFO_EXTENSION);
 	//echo $target_file;
 	$uploadOk = 1;
@@ -58,7 +59,7 @@
 	{
 		if (move_uploaded_file($_FILES["ThreadFile"]["tmp_name"], $target_file)) 
     	{
-        	$sql = "INSERT INTO threads (ThreadID, ThreadFile, ThreadComment, BoardLocation, CreationDate, CreationTime) VALUES ('$ThreadID','$target_file','$ThreadComment','Anime', '$ThreadCreationDate', '$ThreadCreationTime')";
+        	$sql = "INSERT INTO threads (ThreadID, ThreadFile, ThreadComment, BoardID, CreationDate, CreationTime) VALUES ('$ThreadID','$target_file','$ThreadComment','$BoardID', '$ThreadCreationDate', '$ThreadCreationTime')";
 
 			if ($Connection->query($sql) === TRUE) 
 			{
@@ -68,9 +69,9 @@
 			{
     			echo "Error: " . $sql . "<br>" . $Connection->error;
 			}
-        	$UploadStats = "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+        	$UploadStats = "The file ". basename( $_FILES["ThreadFile"]["name"]). " has been uploaded.";
 			$Connection->close();
-        	header("Location: /NyaaChan/Boards/Anime/Thread.php?ThreadID=$ThreadID"); 
+        	header("Location: Thread.php?ThreadID=$ThreadID"); 
     	} 
     	else 
     	{

@@ -7,11 +7,11 @@
 	<head>
 		<title>NyaaChan - Anime</title>
 		<link rel="icon" href="Favicon.png">
-		<link rel="stylesheet" type="text/css" href="../../NyaaChan.css">
+		<link rel="stylesheet" type="text/css" href="NyaaChan.css">
 	</head>
 	<body>
-		<a href="../../Home" id="Title">NyaaChan</a>
-		<a href="../Anime/" id="GroupTitle">/Anime/</a>
+		<a href="Home" id="Title">NyaaChan</a>
+		<a href="/Anime" id="GroupTitle">/Anime/</a>
 
 		<br>
 
@@ -71,7 +71,7 @@
 		}
 		?>
 
-		<?php include '../../Footer.php'; ?>
+		<?php include 'Footer.php'; ?>
 	</body>
 </html>
 

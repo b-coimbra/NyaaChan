@@ -26,7 +26,7 @@
 			<ul id="Menu">
 				<li id="MenuButton"><a href="Home" id="MenuButtonText">Home</a></li>
 				<li id="MenuButton"><a href="Rules" id="MenuButtonText">Rules</a></li>
-				<li id="MenuButton" style="background-color: AliceBlue;"><a href="FAQ" id="MenuButtonText">FAQ</a></li>
+				<li id="MenuButton"><a href="FAQ" id="MenuButtonText">FAQ</a></li>
   				<li id="MenuButton"><a href="Contact" id="MenuButtonText">Contact</a></li>
 			</ul>
 
